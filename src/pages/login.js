@@ -24,7 +24,6 @@ const Signin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user, 909);
     if (!user.email || !user.password) {
       toast.error("Fill Email and Password");
       return;

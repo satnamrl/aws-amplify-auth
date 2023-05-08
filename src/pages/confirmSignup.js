@@ -10,7 +10,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const ConfirmSignup = ({ props }) => {
   const { state } = useLocation();
   useEffect(() => {
-    console.log(state?.user, 90);
   }, [state?.user]);
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");

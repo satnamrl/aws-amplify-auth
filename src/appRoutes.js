@@ -8,6 +8,8 @@ import Signup from "pages/signup";
 import ConfirmSignup from "pages/confirmSignup";
 import Signin from "pages/login";
 import Dashboard from "pages/dashboard";
+import ForgotPassword from "pages/forgetPassword";
+import ResetPassword from "pages/resetPassword";
 
 const appRoutes = createBrowserRouter([
   {
@@ -31,7 +33,14 @@ const appRoutes = createBrowserRouter([
     path: "/signin",
     element: <Signin />,
   },
-
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
+  },
   {
     path: "/dashboard",
     element: <Dashboard />,

@@ -19,7 +19,6 @@ const Dashboard = () => {
   useEffect(() => {
     (async () => {
       const user = await Auth.currentAuthenticatedUser();
-      console.log(user, 90);
       setCurrentUser(user?.attributes);
     })();
   }, [Auth]);
