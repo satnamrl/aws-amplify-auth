@@ -8,7 +8,7 @@ import {
   Link,
 } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import appRoutes from "./appRoutes";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -22,8 +22,9 @@ function App() {
   }, [Amplify]);
   return (
     <Layout>
-      <RouterProvider router={appRoutes} />
-      <ToastContainer />
+      <RouterProvider router={appRoutes}>
+        <ToastContainer />
+      </RouterProvider>
     </Layout>
   );
 }

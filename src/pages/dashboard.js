@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+ 
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     (async () => {
@@ -23,35 +23,9 @@ const Dashboard = () => {
       setCurrentUser(user?.attributes);
     })();
   }, [Auth]);
-  const logout = async () => {
-    try {
-      await Auth.signOut();
-      toast.success("Logout");
-      navigate("/signin");
-    } catch (error) {
-      console.log("error signing out: ", error);
-      toast.error("Not Logout");
-    }
-  };
+  
   return (
     <Fragment>
-      <Container>
-        <Navbar bg="dark" variant="dark">
-          <Container>
-            <Navbar.Brand href="#home">Aws/Amplify Auth</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                {currentUser?.["custom:first_name"]}{" "}
-                {currentUser?.["custom:last_name"]}{" "}
-                <Badge bg="warning" text="dark" onClick={logout}>
-                  Logout
-                </Badge>
-              </Navbar.Text>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </Container>
       <Row>
         <Col className="d-flex justify-content-center">
           <Card style={{ width: "18rem" }}>
@@ -68,7 +42,7 @@ const Dashboard = () => {
                 <p>{currentUser?.phone_number}</p>
               </Card.Text>
               <Card.Link href="#">
-                {moment(currentUser?.updated_at).format("LLLL")}
+                {moment(new Date(currentUser?.updated_at)).format("LLLL")}
               </Card.Link>
             </Card.Body>
           </Card>

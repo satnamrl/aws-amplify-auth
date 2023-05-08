@@ -5,7 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 import { Auth } from "aws-amplify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -110,8 +110,8 @@ const Signin = () => {
         </Form>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between">
-        <Card.Link href="/signin">Sign Up Here</Card.Link>
-        <Card.Link href="/forgot-password">Forgot Password</Card.Link>
+        <Link to="/signup">Sign Up Here</Link>
+        <Link to="/forgot-password">Forgot Password</Link>
       </Card.Footer>
     </Card>
   );

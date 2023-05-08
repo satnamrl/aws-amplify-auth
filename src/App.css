@@ -10,3 +10,8 @@ html {
 .otp-input {
   justify-content: space-between;
 }
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}

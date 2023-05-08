@@ -5,7 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 import { Auth } from "aws-amplify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -174,8 +174,7 @@ const Signup = () => {
         </Form>
       </Card.Body>
       <Card.Footer>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+      <Link to="/signin">Sign In Here</Link>
       </Card.Footer>
     </Card>
   );
