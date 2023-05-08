@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
-
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
+import { Auth } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstName: "",
     phoneNumber: "",
     lastName: "",
-    emailId: "",
+    email: "",
     password: "",
     confirmPassword: "",
     termAndCondition: false,
@@ -24,12 +27,51 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user, 909);
     if (user.password !== user.confirmPassword) {
       toast.error("Password not matched");
+      return;
     }
+    try {
+      const response = await signUpUser(user);
+      console.log(response);
+      if (!user.userConfirmed) {
+        navigate("/confirm-signup", { state: { user } });
+      } else {
+        navigate("/signin", { state: { user } });
+      }
+    } catch (error) {
+      const err = JSON.stringify(error);
+      toast.error(error.message);
+      console.log(err, error.data);
+    }
+  };
+
+  const signUpUser = (payload) => {
+    return new Promise((resolve, reject) => {
+      Auth.signUp({
+        username: payload.email,
+        password: payload.password,
+        attributes: {
+          email: payload.email,
+          phone_number: `+${payload.phoneNumber}`, //   phone_number: '+1234567890',
+          updated_at: new Date().getTime().toString(),
+          "custom:first_name": payload.firstName,
+          "custom:last_name": payload.lastName,
+          "custom:role": "user",
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log("Error signing up user", err);
+          reject(err);
+        });
+    });
   };
   return (
     <Card style={{ width: "30rem" }}>
@@ -88,12 +130,12 @@ const Signup = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="emailId">
+          <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              name="emailId"
-              value={user.emailId}
+              name="email"
+              value={user.email}
               placeholder="exmple@exmple.com"
               onChange={handleInput}
             />
@@ -120,7 +162,7 @@ const Signup = () => {
               />
             </Form.Group>
           </Row>
-          <Row style={{marginTop:15}}>
+          <Row style={{ marginTop: 15 }}>
             <Col>
               <div className="d-grid gap-2 mt-10">
                 <Button variant="primary" size="lg" type="submit">

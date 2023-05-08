@@ -4,11 +4,12 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import Signup from "./pages/signup";
+import Signup from "pages/signup";
+import ConfirmSignup from "pages/confirmSignup";
 
 const appRoutes = createBrowserRouter([
   {
-    path: "/",
+    path: "/signup",
     element: (
       <div>
         <h1>Hello World</h1>
@@ -19,6 +20,10 @@ const appRoutes = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/confirm-signup",
+    element: <ConfirmSignup />,
   },
 ]);
 

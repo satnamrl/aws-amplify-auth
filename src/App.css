@@ -6,3 +6,7 @@ html {
   padding: 0;
   display: table;
 }
+
+.otp-input {
+  justify-content: space-between;
+}
