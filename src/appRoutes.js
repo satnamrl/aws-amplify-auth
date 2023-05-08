@@ -7,6 +7,7 @@ import {
 import Signup from "pages/signup";
 import ConfirmSignup from "pages/confirmSignup";
 import Signin from "pages/login";
+import Dashboard from "pages/dashboard";
 
 const appRoutes = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const appRoutes = createBrowserRouter([
   {
     path: "/signin",
     element: <Signin />,
+  },
+
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 

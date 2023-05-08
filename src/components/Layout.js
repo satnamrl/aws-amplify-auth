@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap";
 
 const styles = {
-  position: "fixed",
-  top: "20%",
+  // position: "fixed",
+  // top: "20%",
 };
 
 export default ({ children }) => {
   return (
-    <Container className="d-flex justify-content-center" style={styles}>
+    <Container className="" style={styles}>
       {children}
     </Container>
   );
